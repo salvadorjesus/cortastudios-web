@@ -56,6 +56,36 @@ $(document).ready(function()
 			catch(e) {}
 		}
 	});
+	
+	// Fix accordion headers that have ui-state-active but are actually closed
+	// This happens on page load where some headers have wrong classes
+	$('.nostalgia-accordion .ui-accordion-header').each(function() {
+		var $header = $(this);
+		var $content = $header.next('.ui-accordion-content');
+		var isContentVisible = $content.css('display') !== 'none';
+		
+		if (!isContentVisible && $header.hasClass('ui-state-active')) {
+			// Content is hidden but header looks active - mark it as closed
+			$header.addClass('accordion-closed');
+		}
+	});
+	
+	// Update classes when accordion changes
+	$('.nostalgia-accordion').on('accordionactivate', function(event, ui) {
+		// Remove accordion-closed from all headers in this accordion
+		$(this).find('.ui-accordion-header').removeClass('accordion-closed');
+		
+		// Re-check all headers and add class if needed
+		$(this).find('.ui-accordion-header').each(function() {
+			var $header = $(this);
+			var $content = $header.next('.ui-accordion-content');
+			var isContentVisible = $content.css('display') !== 'none';
+			
+			if (!isContentVisible && $header.hasClass('ui-state-active')) {
+				$header.addClass('accordion-closed');
+			}
+		});
+	});
 
 	/**************************************************************************/
 	/*	Forms																  */

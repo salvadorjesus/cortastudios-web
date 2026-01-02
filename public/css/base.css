@@ -211,6 +211,12 @@ span.bold						{ font-weight:bold;					}
 		background:transparent url('../image/icon_minus.png') right center no-repeat;
 	}
 
+	/* Special class for headers that should look closed even if they have ui-state-active */
+	.nostalgia-accordion .ui-accordion-header.accordion-closed
+	{
+		background:#000000 url('../image/icon_plus.png') right center no-repeat !important;
+	}
+
 	.nostalgia-accordion .ui-state-active a
 	{
 		padding-left:0px;
