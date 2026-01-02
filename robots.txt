@@ -1,0 +1,16 @@
+# Robots.txt for Corta Studios
+# Allow all bots to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive directories
+Disallow: /images/icon/
+Disallow: /css/
+Disallow: /js/
+
+# Sitemap location
+Sitemap: https://cortastudios.github.io/sitemap.xml
+
+# Crawl delay for heavy crawlers (in seconds)
+Crawl-delay: 1
