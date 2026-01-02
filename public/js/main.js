@@ -11,14 +11,10 @@ $(document).ready(function()
 		{
 			slide		:
 			[
-				{image	:	'image/background/CS1.jpg'},
-				{image	:	'image/background/CS2.jpg'},
-				{image	:	'image/background/CS3.jpg'}
+				{image	:	'image/background/cs1.jpg'},
+				{image	:	'image/background/cs2.jpg'},
+				{image	:	'image/background/cs3.jpg'}
 			]
-		},
-		googleMap		:
-		{
-			coordinates	:	[53.276698,-6.12562]
 		}
 	}
 
@@ -32,7 +28,12 @@ $(document).ready(function()
 		autoplay				:	true,
 		thumb_links				:	false,
 		start_slide				:	1,
-		thumbnail_navigation	:	false
+		thumbnail_navigation	:	false,
+		fit_always				:	1,
+		fit_portrait			:	1,
+		fit_landscape			:	1,
+		horizontal_center		:	1,
+		vertical_center			:	1
 	});
 
 	/**************************************************************************/
@@ -55,56 +56,6 @@ $(document).ready(function()
 			catch(e) {}
 		}
 	});
-
-	/**************************************************************************/
-	/*	Google Maps															  */
-	/**************************************************************************/
-
-	try
-	{
-		var coordinate=new google.maps.LatLng(options.googleMap.coordinates[0],options.googleMap.coordinates[1]);
-
-		var mapOptions=
-		{
-			zoom				:	15,
-			center				:	coordinate,
-			streetViewControl	:	false,
-			mapTypeControl		:	false,
-			zoomControlOptions	:
-			{
-				position		:	google.maps.ControlPosition.RIGHT_CENTER
-			},
-			panControlOptions:
-			{
-				position		:	google.maps.ControlPosition.LEFT_CENTER
-			},
-			mapTypeId			:	google.maps.MapTypeId.ROADMAP,
-			styles				:
-			[
-				{
-					stylers		:
-					[
-						{
-							saturation	:	-100
-						}
-					]
-				}
-			]
-		};
-
-		var googleMap=new google.maps.Map(document.getElementById('map'),mapOptions);
-
-		var markerOptions=
-		{
-			map			:	googleMap,
-			position	:	coordinate,
-			icon		:	'image/map_pointer.png'
-		}
-
-		var googleMarker=new google.maps.Marker(markerOptions);
-
-	}
-	catch(e) {}
 
 	/**************************************************************************/
 	/*	Forms																  */
@@ -192,8 +143,8 @@ $(document).ready(function()
 		$(this).attr('src',$(this).attr('src') + '?i='+getRandom(1,100000));
 		$(this).bind('load',function()
 		{
-			$(this).parent().first().css('background-image','none');
-			$(this).animate({opacity:1},1000);
+			$(this).parent().first().addClass('loaded');
+			$(this).css('opacity', 1);
 		});
 	});
 
@@ -281,7 +232,6 @@ $(document).ready(function()
 	{
 		setTwitterDimension();
 		setImageListDimension();
-		//googleMap.setCenter(googleMarker.getPosition());
 	});
 
 	$(window).trigger('resize');

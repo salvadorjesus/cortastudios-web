@@ -1424,3 +1424,26 @@ div.main-body
 .section-list > li:first-child {
 	margin-top:20px;
 }
+
+/* CarouFredSel wrapper styles */
+.caroufredsel_wrapper {
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Preloader images - remove inline opacity */
+a.preloader img {
+	opacity: 1;
+}
+
+/* Remove background image when loaded */
+a.preloader.loaded {
+	background-image: none;
+}
+
+/* Image list carousel navigation */
+.image-list-carousel-navigation-prev,
+.image-list-carousel-navigation-next {
+	display: block;
+}
